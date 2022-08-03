@@ -1,0 +1,13 @@
+.red {
+    color: red;
+}
+
+.error {
+    border: red solid 1px;
+    background: #ff9794;
+}
+
+.input {
+    border: cadetblue solid 1px;
+    background: #82faff;
+}
