@@ -47,10 +47,12 @@ export const Counter: React.FC<CounterPropsType> = ({
                         title={'reset'}
                         callBackButton={resetAmount}
                     />
-                    <NavLink to={'/counterProgress'}><Button
+                    <NavLink to={'/counterProgress'}>
+                        <Button
                         title={'set'}
                         callBackButton={onClickSetInput}
-                    /></NavLink>
+                        />
+                    </NavLink>
                 </div>
             }
             />

@@ -1,7 +1,6 @@
 import React from 'react';
 
 export type ButtonProps = {
-
     disabled?: boolean
     title: string
     callBackButton: () => void

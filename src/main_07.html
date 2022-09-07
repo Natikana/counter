@@ -1,0 +1,1881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1. Реализуйте функцию, которая принимает параметром подсторку, число повторов и разделитель, а возвращает сторку, состоящую из указанного количества повторов подстроки с использованием разделителя.
+    // repeatString("yo", 3, " ") => "yo yo yo"
+    // repeatString("yo", 3, ",") => "yo,yo,yo"
+    // for или str.repeat()
+    const repeatString = (str, n, divided) => {
+
+        return (str + divided).repeat(n)
+    }
+    console.log(repeatString("yo", 3, ' '))
+    //2. Реализуйте функцию, которая принимает параметром сторку и подстроку, а возвращает true, если строка начинается с указанной подстроки, в противном случае - false. Регистр не учитывается.
+    // checkStart("Incubator", "inc") => true
+    // checkStart("Incubator", "yo") => false
+    // str.startWith() slice indexOF
+    const checkStart = (str, strPart) => {
+        return str.toLowerCase().startsWith(strPart) ? true : false
+    }
+    console.log(checkStart("Incubator", "inc"))
+    //3. Реализуйте функцию, которая принимает параметром строку и число (количество символов), а возвращает строку из параметров, обрезанную до указанного количества символов и завершает её многоточием.
+    //truncateString("Всем студентам инкубатора желаю удачи!", 10) => "Всем студе..."
+    const truncateString = (str, number) => {
+        return str.split('').splice(0, number).join('')
+    }
+    console.log(truncateString("Всем студентам инкубатора желаю удачи!", 10))
+    //4. Реализуйте функцию, которая принимает параметром сторку (предложение) и возвращает самое короткое слово в предложении, если в параметрах пустая строка, то возвращает null.
+    // getMinLengthWord("Всем студентам инкубатора желаю удачи!") => "Всем"
+    // getMinLengthWord("") => null
+    // split()
+    const getMinLengthWord = (str) => {
+        return str.split('').reduce((a, b) => a.length < b.length ? a : b)
+    }
+    console.log(getMinLengthWord("Всем студентам инкубатора желаю удачи!"))
+    //5. Реализуйте функцию, которая принимает параметром сторку (предложение) и возвращает то же предложение, где все слова написаны строчными, но начинаются с заглавных букв.
+    // setUpperCase("всем стУдентам инкуБатора Желаю удачИ!") => "Всем Студентам Инкубатора Желаю Удачи!"
+    const setUpperCase = (str) => {
+        return str.toLowerCase().split(' ').map(el => el[0].toUpperCase() + el.substring(1)).join(' ')
+    }
+    console.log(setUpperCase("Всем студентам инкубатора желаю удачи!"))
+    //6. Реализуйте функцию, котрая принимает параметрами две строки. Если все символы второй строки содержаться в первой - возвращает true, если нет - возвращает fasle. Проверка проводится без учёта регистра.
+    // isIncludes("Incubator", "Cut") => true
+    // isIncludes("Incubator", "table") => false
+    // every()
+    const isIncludes = (str, partStr) => {
+        return partStr.toLowerCase().split('').every(el => str.toLowerCase().split('').some(n => el.includes(n)))
+    }
+    console.log(isIncludes("Incubator", "table"))
+
+    function sumEvenNumbers(input) {
+        return input.filter(el => el % 2 === 0).reduce((a, b) => a + b)
+        //return input.reduce((a,b)=> a + (b % 2 === 0 && b), 0 )
+        /*let sum = 0
+        for (let num of input ) {
+            if (num % 2 == 0) {
+                sum += num
+            }
+        }
+        return sum*/
+    }
+
+    console.log(sumEvenNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+
+    function uniqueSum(lst) {
+        return [...new Set(lst)].reduce((a, b) => a + b)
+        /*  if (lst.length === 0) return null
+     else return  lst.filter((el, index) => lst.indexOf(el) === index)
+              .reduce((a, b) => a + b)*/
+
+    }
+
+    console.log(uniqueSum([1, 3, 8, 1, 8]))
+
+    function unusedDigits(...arg) {
+        let compareArr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        let arr = arg.toString().split(',').join('').split('').sort((a, b) => a - b)
+        return compareArr.filter(el => !arr.includes(el)).join('')
+    }
+
+    console.log(unusedDigits([2015, 8, 26]))
+
+    function filter_list(l) {
+        return l.filter(el => typeof el === 'number')
+    }
+
+    console.log(filter_list([1, 2, 'a', 'b']))
+
+    // [1,2]
+    function min(arr, toReturn) {
+        return arr.indexOf(Math.min(...arr));
+    }
+
+    console.log(min([1, 2, 3, 4, 5], 'value'))
+
+    function gordon(a) {
+        //a === @
+        //end ===!!!
+        //*===    "eiouy"
+        /*return a.split('').map(el => el === 'a' ? '@' : el && el.includes('e','i','o','u','y') ? '*' : el && el === ' ' ? '!!! ' : el)
+            .join('').toUpperCase()*/
+        let b = a.split(' ').map(el => el + '!!!!').join(' ')
+        return b.split('').map(el =>
+            el === 'a' ? '@' : el &&
+            el === 'e' ? '*' : el &&
+            el === 'i' ? '*' : el &&
+            el === 'o' ? '*' : el &&
+            el === 'u' ? '*' : el)
+            .join('').toUpperCase()
+    }
+
+    console.log(gordon('are you stu pid'))
+
+    function last(x) {
+        return x.split(' ')
+    }
+
+    console.log(last('what time are we climbing up the volcano'))
+    //, ['time', 'are', 'we', 'the', 'climbing', 'volcano', 'up', 'what']
+    // ['take', 'me', 'semynak', 'to']
+    //['a', 'need', 'ubud', 'i', 'taxi', 'man', 'to', 'up']
+    function maxTriSum(numbers) {
+        return [...new Set(numbers)].sort((a, b) => b - a).splice(0, 3).reduce((a, b) => a + b)
+    }
+
+    console.log(maxTriSum([3, 2, 6, 8, 2, 3]))
+
+    function divCon(x) {
+        let sum = 0
+        let sum2 = 0
+        for (let num of x) {
+            if (typeof num === 'number') {
+                sum += num
+            }
+            if (typeof num === 'string') {
+                sum2 += Number(num)
+            }
+        }
+        return sum - sum2
+    }
+
+    console.log(divCon([9, 3, '7', '3']))
+
+    function removeRotten(bagOfFruits) {
+        if (bagOfFruits.length === 0) return []
+        else return bagOfFruits.map(el => el.startsWith('rotten') ? el.substring(6).toLowerCase() : el)
+    }
+
+    console.log(removeRotten(["apple", "rottenBanana", "apple"]))
+
+    function modifyMultiply(str, loc, num) {
+        let a = (str.split(' ')[loc] + '-').repeat(num)
+        let b = a.substring(0, a.length - 1)
+        console.log(b)
+    }
+
+    console.log(modifyMultiply("This is a string", 3, 5))
+
+    function alternate(n, firstValue, secondValue) {
+        /*let arr = [firstValue, secondValue]
+        return [].concat(...Array.from({ length: n }, () => arr)).splice(0,n);*/
+        let arr = []
+        for (let i = 0; i < n; i++) {
+            arr.push(i % 2 === 0 ? firstValue : secondValue)
+        }
+        return arr
+    }
+
+    console.log(alternate(5, true, false))
+
+    // [true, false, true, false, true]
+    function sumOfMinimums(arr) {
+        return arr.filter(el => el.sort((a, b) => a - b).splice(1)).flat(Infinity).reduce((a, b) => a + b)
+    }
+
+    console.log(sumOfMinimums([[7, 9, 8, 6, 2], [6, 3, 5, 4, 3], [5, 8, 7, 4, 5]]))
+
+    function clean(arr) {
+        return arr.filter(() => true)
+    }
+
+    console.log(clean([undefined, , , , null, , NaN, , false, '', 4, 3, 2, 1, 0]))
+
+    function duplicates(array) {
+        return array.filter(el => array.includes(el))
+    }
+
+    console.log(duplicates([1, 2, 5, 6, 5, 2]))
+
+    function tidyNumber(n) {
+        let a = n.toString().split('').splice(0, 1)
+        let b = n.toString().split('').splice(1, 2)
+        if (a > b) return false
+        else return true
+        //console.log(b)
+    }
+
+    console.log(tidyNumber(62))
+
+    function orderFood(list) {
+        let count = {}
+        for (let element of list) {
+            if (count[element.meal]) {
+                count[element.meal] += 1
+            } else {
+                count[element.meal] = 1
+            }
+
+        }
+        return count
+    }
+
+    console.log(orderFood([
+        {
+            firstName: 'Noah', lastName: 'M.', country: 'Switzerland', continent: 'Europe', age: 19, language: 'C',
+            meal: 'vegetarian'
+        },
+        {
+            firstName: 'Anna',
+            lastName: 'R.',
+            country: 'Liechtenstein',
+            continent: 'Europe',
+            age: 52,
+            language: 'JavaScript',
+            meal: 'standard'
+        },
+        {
+            firstName: 'Ramona', lastName: 'R.', country: 'Paraguay', continent: 'Americas', age: 29, language: 'Ruby',
+            meal: 'vegan'
+        },
+        {
+            firstName: 'George', lastName: 'B.', country: 'England', continent: 'Europe', age: 81, language: 'C',
+            meal: 'vegetarian'
+        },
+    ]))
+
+    //{ vegetarian: 2, standard: 1, vegan: 1 }
+    function orderGreeting(list1) {
+        return list1.map(el => ({el, greeting: `Hi ${el.firstName}, what do you like the most about ${el.language}?`}))
+    }
+
+    console.log(orderGreeting(
+        [
+            {
+                firstName: 'Sofia',
+                lastName: 'I.',
+                country: 'Argentina',
+                continent: 'Americas',
+                age: 35,
+                language: 'Java'
+            },
+            {firstName: 'Lukas', lastName: 'X.', country: 'Croatia', continent: 'Europe', age: 35, language: 'Python'},
+            {
+                firstName: 'Madison',
+                lastName: 'U.',
+                country: 'United States',
+                continent: 'Americas',
+                age: 32,
+                language: 'Ruby'
+            }
+        ]))
+
+    /* [
+     { firstName: 'Sofia', lastName: 'I.', country: 'Argentina', continent: 'Americas', age: 35, language: 'Java',
+         greeting: 'Hi Sofia, what do you like the most about Java?'
+     },
+         { firstName: 'Lukas', lastName: 'X.', country: 'Croatia', continent: 'Europe', age: 35, language: 'Python',
+             greeting: 'Hi Lukas, what do you like the most about Python?'
+         },
+         { firstName: 'Madison', lastName: 'U.', country: 'United States', continent: 'Americas', age: 32, language: 'Ruby',
+             greeting: 'Hi Madison, what do you like the most about Ruby?'
+         }
+     ];*/
+    function countDevelopers(list) {
+        let count = 0
+        list.filter(el => {
+            el.continent === 'Europe' && el.language === 'JavaScript' ? count += 1 : 0
+        })
+        return count
+        /* let count = 0
+         list.map(el => {
+            if (el.continent === 'Europe' && el.language === 'JavaScript') {
+                 count += 1
+            }
+        })
+         return count*/
+    }
+
+    console.log(countDevelopers([
+        {
+            firstName: 'Noah',
+            lastName: 'M.',
+            country: 'Switzerland',
+            continent: 'Europe',
+            age: 19,
+            language: 'JavaScript'
+        },
+        {firstName: 'Maia', lastName: 'S.', country: 'Tahiti', continent: 'Europe', age: 28, language: 'JavaScript'},
+        {firstName: 'Shufen', lastName: 'L.', country: 'Taiwan', continent: 'Europe', age: 35, language: 'HTML'},
+        {firstName: 'Sumayah', lastName: 'M.', country: 'Tajikistan', continent: 'Asia', age: 30, language: 'CSS'}
+    ]))
+
+    function isRubyComing(list) {
+        return list.some(el => el.language === 'Ruby')
+        /*let a =  list.filter(el => el.language === 'Ruby')
+         return a.length !== 0*/
+
+    }
+
+    console.log(isRubyComing(
+        /*[
+            { firstName: 'Sofia', lastName: 'I.', country: 'Argentina', continent: 'Americas', age: 35, language: 'Java' },
+            { firstName: 'Lukas', lastName: 'X.', country: 'Croatia', continent: 'Europe', age: 35, language: 'Python' },
+            { firstName: 'Madison', lastName: 'U.', country: 'United States', continent: 'Americas', age: 32, language: 'Ruby' }
+        ]*/
+        [
+            {
+                firstName: 'Sofia',
+                lastName: 'I.',
+                country: 'Argentina',
+                continent: 'Americas',
+                age: 35,
+                language: 'Java'
+            },
+            {firstName: 'Lukas', lastName: 'X.', country: 'Croatia', continent: 'Europe', age: 35, language: 'Python'}
+        ]
+    ))
+
+    function getFirstPython(list) {
+        /*const developer = list.find(el =>  el.language === 'Python')
+        return developer ? `${developer.firstName} ${developer.country}` : 'There will be no Python developers'*/
+
+        for (let el of list) {
+            if (el.language === 'Python') return `${el.firstName}, ${el.country}`
+        }
+        return 'There will be no Python developers'
+    }
+
+    console.log(getFirstPython([
+        {firstName: 'Mark', lastName: 'G.', country: 'Scotland', continent: 'Europe', age: 22, language: 'JavaScript'},
+        {
+            firstName: 'Victoria',
+            lastName: 'T.',
+            country: 'Puerto Rico',
+            continent: 'Americas',
+            age: 30,
+            language: 'Python'
+        },
+        {firstName: 'Emma', lastName: 'B.', country: 'Norway', continent: 'Europe', age: 19, language: 'Clojure'}
+    ]))
+    //'Victoria, Puerto Rico')
+    //'There will be no Python developers')
+
+    function countLanguages(list) {
+        count = {}
+        list.forEach(el => {
+            count.hasOwnProperty([el.language]) ? count[el.language]++ : count[el.language] = 1
+        })
+        return count
+        /*for (let element of list) {
+            if (count[element.language]) {
+                count[element.language] += 1
+            }
+            else {
+                count[element.language] = 1
+            }
+        }
+        return count*/
+    }
+
+    console.log(countLanguages([
+        {firstName: 'Noah', lastName: 'M.', country: 'Switzerland', continent: 'Europe', age: 19, language: 'C'},
+        {
+            firstName: 'Anna',
+            lastName: 'R.',
+            country: 'Liechtenstein',
+            continent: 'Europe',
+            age: 52,
+            language: 'JavaScript'
+        },
+        {firstName: 'Ramon', lastName: 'R.', country: 'Paraguay', continent: 'Americas', age: 29, language: 'Ruby'},
+        {firstName: 'George', lastName: 'B.', country: 'England', continent: 'Europe', age: 81, language: 'C'},
+    ]))
+
+    //{ C: 2, JavaScript: 1, Ruby: 1 }
+    function isSameLanguage(list) {
+        //return list.some(el => el.language === 'JavaScript')
+        //return list.every(el => el.language === 'JavaScript')
+        for (let element of list) {
+            if (element.language !== 'JavaScript') return false
+        }
+        return true
+    }
+
+    console.log(isSameLanguage([{
+            "firstName": "Kseniya",
+            "lastName": "T.",
+            "country": "Belarus",
+            "continent": "Europe",
+            "age": 29,
+            "language": "Ruby"
+        },
+            {
+                "firstName": "Amar",
+                "lastName": "V.",
+                "country": "Bosnia and Herzegovina",
+                "continent": "Europe",
+                "age": 32,
+                "language": "Ruby"
+            }]
+    ))
+
+    function findSenior(list) {
+        let max = 0
+        for (let element of list) {
+            if (element.age > max) max = element.age
+        }
+        return list.filter(el => el.age === max)
+    }
+
+    console.log(findSenior([
+        {firstName: 'Gabriel', lastName: 'X.', country: 'Monaco', continent: 'Europe', age: 49, language: 'PHP'},
+        {firstName: 'Odval', lastName: 'F.', country: 'Mongolia', continent: 'Asia', age: 38, language: 'Python'},
+        {firstName: 'Emilija', lastName: 'S.', country: 'Lithuania', continent: 'Europe', age: 19, language: 'Python'},
+        {firstName: 'Sou', lastName: 'B.', country: 'Japan', continent: 'Asia', age: 49, language: 'PHP'},
+    ]))
+
+    function allContinents(list) {
+        let arr = list.map(el => el.continent)
+        return arr.some(a => a === 'Africa') &&
+            arr.some(a => a === 'Americas') &&
+            arr.some(a => a === 'Asia') &&
+            arr.some(a => a === 'Europe') &&
+            arr.some(a => a === 'Oceania')
+    }
+
+    console.log(allContinents([
+        {firstName: 'Fatima', lastName: 'A.', country: 'Algeria', continent: 'Africa', age: 25, language: 'JavaScript'},
+        {firstName: 'Agustín', lastName: 'M.', country: 'Chile', continent: 'Americas', age: 37, language: 'C'},
+        {firstName: 'Jing', lastName: 'X.', country: 'China', continent: 'Asia', age: 39, language: 'Ruby'},
+        {firstName: 'Laia', lastName: 'P.', country: 'Andorra', continent: 'Europe', age: 55, language: 'Ruby'},
+        {firstName: 'Oliver', lastName: 'Q.', country: 'Australia', continent: 'Oceania', age: 65, language: 'PHP'}
+    ]))
+
+    //'Africa', 'Americas', 'Asia', 'Europe', 'Oceania'.
+    function isAgeDiverse(list) {
+        let arr = list.map(a => a.age);
+
+        return arr.some(a => 19 >= a && a >= 13)
+            && arr.some(a => 29 >= a && a >= 20)
+            && arr.some(a => 39 >= a && a >= 30)
+            && arr.some(a => 49 >= a && a >= 40)
+            && arr.some(a => 59 >= a && a >= 50)
+            && arr.some(a => 69 >= a && a >= 60)
+            && arr.some(a => 79 >= a && a >= 70)
+            && arr.some(a => 89 >= a && a >= 80)
+            && arr.some(a => 99 >= a && a >= 90)
+            && arr.some(a => a >= 100);
+
+
+    }
+
+    console.log(isAgeDiverse([
+        {firstName: 'Harry', lastName: 'K.', country: 'Brazil', continent: 'Americas', age: 19, language: 'Python'},
+
+    ]))
+
+    function addUsername(list) {
+        let currentYear = new Date().getFullYear()
+        return list.map(el => ({
+            ...el,
+            username: (el.firstName + el.lastName[0]).toLowerCase() + (currentYear - el.age)
+        }))
+    }
+
+    console.log(addUsername([
+        {
+            firstName: 'Emily', lastName: 'N.', country: 'Ireland', continent: 'Europe', age: 30, language: 'Ruby',
+            username: 'emilyn1990'
+        },
+        {
+            firstName: 'Nor', lastName: 'E.', country: 'Malaysia', continent: 'Asia', age: 20, language: 'Clojure',
+            username: 'nore2000'
+        }
+    ]))
+
+    function getAverageAge(list) {
+        return Math.round(list.reduce((b, a) => b + a.age, 0) / list.length)
+        //return  Math.round(list.map(el => el.age).reduce((a, b) => a + b)/list.length)
+    }
+
+    console.log(getAverageAge([
+        {firstName: 'Noa', lastName: 'A.', country: 'Israel', continent: 'Asia', age: 20, language: 'Ruby'},
+        {firstName: 'Andrei', lastName: 'E.', country: 'Romania', continent: 'Europe', age: 21, language: 'C'},
+    ]))
+
+    function findAdmin(list, lang) {
+        return list.filter(el => el.githubAdmin === 'yes' && el.language === lang)
+    }
+
+    console.log(findAdmin([
+        {
+            firstName: 'Kseniya',
+            lastName: 'T.',
+            country: 'Belarus',
+            continent: 'Europe',
+            age: 49,
+            language: 'Ruby',
+            githubAdmin: 'no'
+        },
+        {
+            firstName: 'Piotr',
+            lastName: 'B.',
+            country: 'Poland',
+            continent: 'Europe',
+            age: 128,
+            language: 'JavaScript',
+            githubAdmin: 'no'
+        }
+    ], 'JavaScript'))
+
+    /*var answer1 = [
+        { firstName: 'Harry', lastName: 'K.', country: 'Brazil', continent: 'Americas', age: 22, language: 'JavaScript', githubAdmin: 'yes' },
+        { firstName: 'Jing', lastName: 'X.', country: 'China', continent: 'Asia', age: 34, language: 'JavaScript', githubAdmin: 'yes' }
+    ]*/
+    function isLanguageDiverse(list) {
+        let count = {}
+        for (let element of list) {
+            if (count[element.language]) {
+                count[element.language] += 1
+            } else count[element.language] = 1
+        }
+        for (let el in count) {
+            if (count[el] > 2) return false
+        }
+        return true
+    }
+
+    console.log(isLanguageDiverse(
+        [{
+            "firstName": "Daniel",
+            "lastName": "J.",
+            "country": "Aruba",
+            "continent": "Americas",
+            "age": 42,
+            "language": "Python"
+        },
+            {
+                "firstName": "Kseniya",
+                "lastName": "T.",
+                "country": "Belarus",
+                "continent": "Europe",
+                "age": 22,
+                "language": "Ruby"
+            },
+            {
+                "firstName": "Joao",
+                "lastName": "D.",
+                "country": "Portugal",
+                "continent": "Europe",
+                "age": 25,
+                "language": "JavaScript"
+            }]))
+    /*function findOddNames(list) {
+        return list.filter(v=>v.firstName.split``.reduce((a,b)=>a+b.charCodeAt(),0)%2!==0)
+    }
+        //return list.map(el => el.firstName.charCodeAt(el.firstName))
+    function sumCharCodes(str){
+        return str
+            .split('')
+            .map(char => char.charCodeAt())
+            .reduce((sum, current) => sum + current);
+    }
+
+    function isOdd(n){
+        return n % 2 != 0;
+    }
+
+    function findOddNames(list) {
+        return list.filter(person => {
+            return isOdd(sumCharCodes(person.firstName));
+        })
+    }*/
+    /*const findOddNames = a => a.filter(({ firstName }) =>
+        firstName.split('').map(c => c.charCodeAt()).reduce((r, c) => r + c) % 2);*/
+    /*console.log( findOddNames([
+        { firstName: 'Aba', lastName: 'N.', country: 'Ghana', continent: 'Africa', age: 21, language: 'Python' },
+        { firstName: 'Abb', lastName: 'O.', country: 'Israel', continent: 'Asia', age: 39, language: 'Java' }
+    ]))*/
+    //'Aba' is: 65 + 98 + 97 = 260
+    function askForMissingDetails(list) {
+        let arr = []
+        list.map(el => {
+            for (let obj in el) {
+                if (el[obj] === null) {
+                    el = {...el, question: `Hi, could you please provide your ${obj}`}
+                    arr.push(el)
+                }
+            }
+        })
+        return arr
+    }
+
+    console.log(askForMissingDetails([
+        {firstName: null, lastName: 'I.', country: 'Argentina', continent: 'Americas', age: 35, language: 'Java'},
+        {firstName: 'Lukas', lastName: 'X.', country: 'Croatia', continent: 'Europe', age: 35, language: null},
+        {
+            firstName: 'Madison',
+            lastName: 'U.',
+            country: 'United States',
+            continent: 'Americas',
+            age: 32,
+            language: 'Ruby'
+        }
+    ]))
+
+    function filterHomogenous(arrays) {
+        return arrays.filter(el => {
+            if (el.length > 0)
+                return el.every(s => typeof s === 'number') || el.every(s => typeof s === 'string')
+        })
+    }
+
+    console.log(filterHomogenous([[1, 5, 4], ['a', 3, 5], ['b'], [], ['1', 2, 3]]))
+
+    //[[1, 5, 4], ['b']]
+    function sortByLanguage(list) {
+        return list.sort((a, b) => {
+            if (a.language < b.language) return -1
+            if (a.language > b.language) return 1
+            if (a.firstName < b.firstName) return -1
+            if (a.firstName > b.firstName) return 1
+            return 0
+        })
+        //return list.sort((a,b) => a.language < b.language && a.firstName < b.firstName ? -1 : 1 )
+    }
+
+    console.log(sortByLanguage([
+        {firstName: 'Nikau', lastName: 'R.', country: 'New Zealand', continent: 'Oceania', age: 39, language: 'Ruby'},
+        {
+            firstName: 'Precious',
+            lastName: 'G.',
+            country: 'South Africa',
+            continent: 'Africa',
+            age: 22,
+            language: 'JavaScript'
+        },
+        {firstName: 'Maria', lastName: 'S.', country: 'Peru', continent: 'Americas', age: 30, language: 'C'},
+        {
+            firstName: 'Agustin',
+            lastName: 'V.',
+            country: 'Uruguay',
+            continent: 'Americas',
+            age: 19,
+            language: 'JavaScript'
+        }
+    ]))
+    const parseNumbers = function (intStrs) {
+        return intStrs.map(el => parseInt(el));
+    }
+    console.log(parseNumbers(['2.48'])) //[2]
+    const flatten = function (array) {
+        return [].concat(...array)
+        //return array.flat()
+
+    }
+    console.log(flatten([[[3], [4], [5]], [9], [9], [8], [[1, 2, 3]]]))
+
+    function pluck(objs, name) {
+        //was not solved
+    }
+
+    console.log(pluck(([{a: 1}, {a: 2}], 'a')))
+
+    // [1,2]
+    function cubeOdd(arr) {
+        let count = 0
+        let a = arr.map(el => typeof el === 'number' ? el : undefined)
+
+        for (let el of a) {
+            let pow = el * el * el
+            if (pow % 2 !== 0) count += pow
+        }
+        return !isNaN(count) ? count : undefined
+    }
+
+    console.log(cubeOdd([1, 2, 3, '4'])) //28
+    function formatMoney(amount) {
+        return '$' + amount.toFixed(2)
+    }
+
+    console.log(formatMoney(39.99))
+    //'$39.99'
+    const reverse = function (array) {
+        let arr = []
+        for (let i = array.length - 1; i >= 0; i--) {
+            arr.push(array[i])
+        }
+        return arr
+    }
+    console.log(reverse([1, 2, 3]))
+    const range = function (start, count) {
+        let arr = []
+        for (let i = start; i <= count; i++) {
+            arr.push(i)
+        }
+        return arr
+    }
+
+    Array.range = function (start, count) {
+        return Array.from({length: count}, (_, index) => start + index)
+    }
+
+    Array.prototype.sum = function () {
+        return this.reduce((a, b) => a + b, 0);
+    }
+    const cannonsReady = (gunners) => {
+        /*let arr = Object.values(gunners)
+        for (let el of arr) {
+            if (el !== 'aye') return 'Shiver me timbers!'
+        }
+        return 'Fire!'*/
+        return Object.values(gunners).some(el => el === 'nay') ? 'Shiver me timbers!' : 'Fire!'
+    }
+    console.log(cannonsReady({'Mike': 'aye', 'Joe': 'aye', 'Johnson': 'nay', 'Peter': 'aye'}))
+
+    // Fire! Shiver me timbers!
+    function solution(a, b) {
+        //console.log(a.length )
+        //console.log( b.length)
+        return a.length < b.length ? a + b + a : b + a + b
+    }
+
+    console.log(solution('Soon', 'Me'))
+
+    // 'MeSoonMe')
+    function generateRange(min, max, step) {
+        let arr = []
+        for (let i = min; i <= max; i = i + step) {
+            arr.push(i)
+        }
+        return arr
+    }
+
+    console.log(generateRange(2, 10, 2))
+
+    //, [2,4,6,8,10])
+    function litres(time) {
+        return Math.floor(time * 0.5)
+    }
+
+    console.log(litres(6.7))
+    //1
+    const filterFunc = (arr) => {
+        return arr.filter(el => el.age > 20)
+    }
+    console.log(filterFunc([
+        {firstName: 'Nikau', lastName: 'R.', country: 'New Zealand', continent: 'Oceania', age: 39, language: 'Ruby'},
+        {
+            firstName: 'Precious',
+            lastName: 'G.',
+            country: 'South Africa',
+            continent: 'Africa',
+            age: 22,
+            language: 'JavaScript'
+        },
+        {firstName: 'Maria', lastName: 'S.', country: 'Peru', continent: 'Americas', age: 30, language: 'C'},
+        {
+            firstName: 'Agustin',
+            lastName: 'V.',
+            country: 'Uruguay',
+            continent: 'Americas',
+            age: 19,
+            language: 'JavaScript'
+        }
+    ]))
+
+    function menFromBoys(arr) {
+        let newArr = arr.filter(el => el % 2 === 0)
+        let oddArr = arr.filter(el => el % 2 !== 0)
+        return [...new Set(newArr), ...new Set(oddArr)]
+        /*let newArr = []
+        let oddArr = []
+        for (let el of arr) {
+            if (el % 2 === 0) {
+                newArr.push(el)
+            }
+            if (el % 2 !== 0) {
+                oddArr.push(el)
+            }
+        }
+        newArr.sort((a, b) => a - b)
+        oddArr.sort((a, b) => b - a)
+        return [...new Set(newArr),...new Set(oddArr)]*/
+    }
+
+    console.log(menFromBoys([82, 91, 72, 76, 76, 100, 85]))
+
+    //  [72,76,82,100,91,85]
+    function sortMyString(S) {
+        let even = []
+        let odd = []
+        for (let i = 0; i < S.length; i++) {
+            if (i % 2 === 0) even.push(S[i])
+            if (i % 2 !== 0) odd.push(S[i])
+        }
+        return even.join('') + ' ' + odd.join('')
+    }
+
+    console.log(sortMyString("CodeWars"))
+
+    function dbSort(a) {
+        let num = a.filter(el => typeof el === 'number').sort((a, b) => a < b ? -1 : 1)
+        console.log(num)
+        let letters = a.filter(el => typeof el === 'string').sort((a, b) => a < b ? -1 : 1)
+        return [...num, ...letters]
+    }
+
+    console.log(dbSort(["Apple", 46, "287", 574, "Peach", "3", "69", 78, "Grape", "423"]))
+
+    //, [46, 78, 574, '287', '3', '423', '69', 'Apple', 'Grape', 'Peach'])
+    function uniteUnique(...argument) {
+        return Array.from(new Set([...argument].flat()))
+    }
+
+    console.log(uniteUnique([], [1, 2, 1, 2], [2, 1, 1, 2, 1]))
+
+    //,[4, "a", 2])
+    function liftoff(instructions) {
+        return instructions.sort((a, b) => b - a).join(' ') + ' liftoff!'
+    }
+
+    console.log(liftoff([2, 8, 10, 9, 1, 3, 4, 7, 6, 5]))
+
+    //,"10 9 8 7 6 5 4 3 2 1 liftoff!"
+    function sortGiftCode(code) {
+        return code.split('').sort((a, b) => a < b ? -1 : 1).join('')
+    }
+
+    console.log(sortGiftCode('pqksuvy'))
+
+    //, 'kpqsuvy'
+    function sortList(list) {
+        return list.sort((a, b) => b['a'] - a['a'])
+    }
+
+    console.log(sortList([
+        {"a": 1, "b": 3},
+        {"a": 3, "b": 2},
+        {"a": 2, "b": 40},
+        {"a": 4, "b": 12}
+    ]))
+
+    /*[
+    {"a": 4, "b": 12},
+        {"a": 3, "b": 2},
+        {"a": 2, "b": 40},
+        {"a": 1, "b": 3}
+    ]*/
+    function consecutive(arr) {
+        let min = Math.min(...arr)
+        let max = Math.max(...arr)
+        let newArr = []
+        for (let i = min; i <= max; i++) {
+            newArr.push(i)
+        }
+        return newArr.filter(el => !arr.includes(el)).length
+    }
+
+    console.log(consecutive([4, 8, 6]))
+
+    function gimme(triplet) {
+        let sortArr = [...triplet].sort((a, b) => a - b)
+        let middleNum = sortArr[1]
+        console.log(sortArr)
+        console.log(triplet)
+        let numArr = triplet.indexOf(middleNum)
+        console.log(numArr)
+    }
+
+    console.log(gimme([-2, -3.2, 1]))
+
+    function mirror(data) {
+        let sortArr = [...data]
+        return [...sortArr.sort((a, b) => a - b).splice(0, sortArr.length - 1), ...data.sort((a, b) => b - a)]
+    }
+
+    console.log(mirror([]))
+    var isSquare = function (n) {
+        return n ** 0.5 % 1 === 0
+    }
+    console.log(isSquare(26))
+
+    function getCount(str) {
+        return str.split('').filter(el => el === 'a' || el === 'i' || el === 'o' || el === 'u' || el === 'e'
+        ).length
+    }
+
+    console.log(getCount("abrocadibra"))
+
+    function lineupStudents(students) {
+        return students.split(' ').sort((a, b) => {
+            if (a.length < b.length) return 1
+            if (a.length > b.length) return -1
+            if (a < b) return 1
+            if (a > b) return -1
+
+            return 0
+        })
+    }
+
+    console.log(lineupStudents('Michio Miki Mikio Minori Minoru Mitsuo Mitsuru Nao Naoki Naoko Noboru Nobu Nobuo Nobuyuki Nori Norio Osamu Rafu Raiden Ringo Rokuro Ronin Ryo Ryoichi Ryota Ryozo Ryuichi Ryuu Saburo Sadao Samuru Satoru Satoshi Seiichi Seiji Senichi Shichiro Shig Shigekazu Shigeo Shigeru Shima Shin Shinichi Shinji Shiro Shoichi Shoji Shuichi Shuji Shunichi Susumu Tadao Tadashi Takahiro Takao Takashi Takayuki Takehiko Takeo Takeshi Takeshi Takumi Tama Tamotsu Taro Tatsuo Tatsuya Teruo Tetsip Tetsuya Tomi Tomio Toru Toshi Toshiaki Toshihiro Toshio Toshiyuki Toyo Tsuneo Tsutomu Tsuyoshi Uyeda Yasahiro Yasuhiro Yasuo Yasushi Yemon Yogi Yoichi Yori Yoshi Yoshiaki Yoshihiro Yoshikazu Yoshimitsu Yoshinori Yoshio Yoshiro Yoshito Yoshiyuki Yuichi Yuji Yuki')
+    )
+
+    function sumTwoSmallestNumbers(numbers) {
+        let count = 0
+        let arr = numbers.sort((a, b) => a - b).splice(0, 2)
+        for (let el of arr) {
+            count += el
+        }
+        return count
+    }
+
+    console.log(sumTwoSmallestNumbers([5, 8, 12, 19, 22]))
+
+    function solve(stones) {
+        let count = 0
+        let a = stones.split('')
+        for (let i = 0; i < a.length; i++) {
+            if (a[i] === a[i + 1]) {
+                count++
+            }
+        }
+        return count
+    }
+
+    console.log(solve("RRGGBB"))
+
+    function squareDigits(num) {
+        let str = num.toString().split('').map(el => el * el).join('')
+        return Number(str)
+    }
+
+    console.log(squareDigits(3212))
+
+    //, 9414
+    function pairs(ar) {
+        const arr1 = [];
+        for (let i = 0; i < ar.length; i += 2) {
+            if (ar[i] + 1 === ar[i + 1] || ar[i] === ar[i + 1] + 1) {
+                arr1.push([ar[i], ar[i + 1]])
+            }
+        }
+        return arr1.length
+    }
+
+    console.log(pairs([1, 2, 5, 8, -4, -3, 7, 6, 5]))
+
+    //,3)
+    function findShort(s) {
+        return Math.min(...s.split(' ').map(el => el.length))
+    }
+
+    console.log(findShort("Let's travel abroad shall we"))
+
+    //, 2)
+    function getMissingElement(superImportantArray) {
+        return [1, 2, 3, 4, 5, 6, 7, 8, 9].filter(el => !superImportantArray.includes(el)).join()
+    }
+
+    console.log(getMissingElement([0, 5, 1, 3, 2, 9, 7, 6, 4]))
+
+    function removeEveryOther(arr) {
+        let newArr = []
+        for (let i = 0; i < arr.length; i++) {
+            if (i % 2 === 0) newArr.push(arr[i])
+        }
+        return newArr
+    }
+
+    console.log(removeEveryOther(['Hello', 'Goodbye', 'Hello Again']))
+
+    //,['Hello', 'Hello Again'])
+    function filter_list(l) {
+        return l.filter(el => typeof el === 'number')
+    }
+
+    console.log(filter_list([1, 2, 'a', 'b']))
+
+    //,[1,2])
+    function largestPairSum(numbers) {
+        return numbers.sort((a, b) => b - a).splice(0, 2).reduce((a, b) => a + b)
+    }
+
+    console.log(largestPairSum([10, 14, 2, 23, 19]))
+    //, 42)
+    /*function insertDash(str) {
+        let array = str.toString().split(""),
+            i = array.length;
+
+        while (i--) {
+            if (array[i] % 2 && array[i + 1] % 2) {
+                array.splice(i + 1, 0, '-');
+            }
+        }
+        return array.join('');
+    }
+    console.log(insertDash(454793))*/
+    //,'4547-9-3' LEARN ONE MORE TIME!!!
+    /*function insertDash(num) {
+        //code me
+        num = num.toString().split('')
+
+        for(let i = 0; i < num.length; i++){
+            if (num[i]%2 > 0 && num[i +1]%2 > 0){
+                num[i] = num[i] + '-'
+            }
+        }
+
+        return num.join('')
+
+    }*/
+    function highAndLow(numbers) {
+
+        let max = Math.max(...numbers.split(' ').map(el => parseFloat(el)))
+        let min = Math.min(...numbers.split(' ').map(el => parseFloat(el)))
+
+        return `${max.toString()} ${min.toString()}`
+
+    }
+
+    console.log(highAndLow("8 3 -5 42 -1 0 0 -9 4 7 4 -4"))
+
+    //, "42 -9"
+    function hexToDec(hexString) {
+        return parseInt(hexString, 16)
+    }
+
+    console.log(hexToDec("a"))
+
+    //, 10
+    function getMiddle(s) {
+        let a = s.split('')
+        for (let el of a) {
+            if (a.length % 2 === 0) {
+                return a.splice(a.length / 2 - 1, 2).join('')
+            } else {
+                return a.splice(a.length / 2, 1).join('')
+            }
+        }
+    }
+
+    console.log(getMiddle("middle"))
+
+    //,"es""testing"),"t"
+    function gimme(triplet) {
+        let sortArr = [...triplet]
+        return triplet.indexOf(sortArr.sort((a, b) => a - b)[1])
+    }
+
+    console.log(gimme([2, 3, 1]))
+
+    function findScreenHeight(width, ratio) {
+        return `${width}x${width / Number(ratio.split(':')[0]) * Number(ratio.split(':')[1])}`
+    }
+
+    console.log(findScreenHeight(1024, "4:3"))
+
+    //, "1024x768"
+    function XO(str) {
+        let countO = 0
+        let countX = 0
+        let a = str.toLowerCase().split('')
+        //debugger
+        for (let el of a) {
+            if (el === 'o') {
+                countO++
+            }
+            if (el === 'x') {
+                countX++
+            }
+            //if (el !== 'x' && el !== 'o')
+            //else return true
+        }
+        return countO === countX
+    }
+
+    console.log(XO("uiu"))
+    //,true
+    let encryptThis = function (text) {
+        return text
+            .split(' ')
+            .map(e => {
+                if (e.length === 1) return e.charCodeAt(0);
+                if (e.length === 2) return `${e[0].charCodeAt(0)}${e[1]}`;
+                if (e.length === 3) return `${e[0].charCodeAt(0)}${e.slice(-1)}${e[1]}`;
+                if (e.length > 3) return `${e[0].charCodeAt(0)}${e.slice(-1)}${e.slice(2, -1)}${e[1]}`;
+            })
+            .join(' ');
+    }
+    console.log(encryptThis("A wise old owl lived in an oak"))
+
+    //, "65 119esi 111dl 111lw 108dvei 105n 97n 111ka")//LEARN MORE
+    function hydrate(s) {
+        let amount = s.split(' ').filter(el => +el).reduce((a, b) => +a + +b)
+        return amount === '1' ?
+            `${amount.toString()} glass of water` :
+            `${amount.toString()} glasses of water`
+    }
+
+    console.log(hydrate("1 beer"))
+
+    //, "1 glass of water"
+    function disemvowel(str) {
+
+        return str.split('').filter(el => el !== 'a' &&
+            el !== 'A' &&
+            el !== 'e' &&
+            el !== 'E' &&
+            el !== 'i' &&
+            el !== 'I' &&
+            el !== 'u' &&
+            el !== 'U' &&
+            el !== 'o' &&
+            el !== 'O'
+        ).join('')
+    }
+    console.log(disemvowel("Thas website is for losers LOL!"))
+    //, "Ths wbst s fr lsrs LL!"
+    function descendingOrder(n){
+        return +n.toString().split('').reverse().join('')
+    }
+    console.log(descendingOrder(123456789))
+    //, 987654321)
+    function count1(array){
+        let obj = {}
+        for (let i = 0; i < array.length; i++) {
+            if(!obj[array[i]])
+             obj[array[i]] = 0
+             obj[array[i]]++
+        }
+        return obj
+    }
+    console.log(count1(['a', 'a', 'b', 'b', 'b']))
+    //, { 'a': 2, 'b': 3 }
+    /*function count(array){
+        var counter = {};
+
+        for (let i=0; i<array.length; ++i)
+        {
+            if (counter[array[i]] == undefined)
+                counter[array[i]] = 1;
+            else
+                counter[array[i]] ++;
+        }
+
+        return counter;
+    }*/
+    function scoreboard(string) {
+        let b = ['zero','one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eighth','nine']
+        let a = string.split(' ').filter(el => b.includes(el))
+        //let c = string.split(' ').filter(el => b.includes(el))
+        for (let el of a) {
+            if (el === 'zero') {
+                return el = 0
+            }
+            if (el === 'one') {
+                return el = 1
+            }
+            if (el === 'two') {
+                return el = 2
+            }
+            if (el === 'three') {
+                return el = 3
+            }
+            if (el === 'four') {
+                return el = 4
+            }
+            if (el === 'five') {
+                return el = 5
+            }
+            if (el === 'six') {
+                return el = 6
+            }
+            if (el === 'seven') {
+                return el = 7
+            }
+            if (el === 'eighth') {
+                return el = 8
+            }
+            if (el === 'nine') {
+                return el = 9
+            }
+        }
+
+        console.log(a)
+        //return [a].length === 1 ? a.push(0) : [a]
+        //return a === 1 ? c.push(0) : c
+    }
+    console.log(scoreboard("new score: two three"))
+    //, [4,0]
+    function calculateTip(amount, rating) {
+
+         if (rating.toLowerCase() === 'excellent') return Math.ceil(amount * 20 / 100)
+        else if (rating.toLowerCase() === 'great') return Math.ceil(amount * 15 / 100)
+        else if (rating.toLowerCase() === 'good') return Math.ceil(amount * 10 / 100)
+        else if (rating.toLowerCase() === 'great') return Math.ceil(amount * 5 / 100)
+        else if (rating.toLowerCase() === 'great') return Math.ceil(amount * 0/ 100)
+        else  return "Rating not recognised"
+    }
+    console.log(calculateTip(20, "excellent"))
+
+    //, 4Terrible: tip 0%
+    /*Poor: tip 5%
+    Good: tip 10%
+    Great: tip 15%
+    Excellent: tip 20%*/
+    function tripleTrouble(one, two, three){
+        let arr = []
+        for (let i = 0; i < one.length; i+= 1) {
+            arr.push(one[i], two[i], three[i])
+        }
+        return arr.join('')
+    }
+    console.log(tripleTrouble("aaa","bbb","ccc"))
+    //, "abcabcabc"
+    function feast(beast, dish) {
+        return beast[0] === dish[0] && beast[beast.length - 1] === dish[dish.length - 1]
+    }
+    console.log(feast("great blue heron", "garlic naa"))
+    //, "garlic naan"
+    function sakuraFall(v) {
+        let s = -400
+        return s >=0 ? s/v : 0
+    }
+    console.log(sakuraFall(5))
+    //,80
+    function switchItUp(number){
+        switch (number) {
+            case 0:
+                return 'zero';
+            case 1:
+                 return 'one';
+            case 2:
+                return 'two';
+            case 3:
+                return 'three';
+            case 4:
+                return 'four';
+            case 5:
+                return 'five';
+            case 6:
+                return 'six';
+            case 7:
+                return 'seven';
+            case 8:
+                return 'eight';
+            case 9:
+                return 'nine';
+
+        }
+    }
+    console.log(switchItUp(1))
+    function superSize(num){
+       return +num.toString().split('').sort((a, b) => b - a).join('')
+    }
+    console.log(superSize(69))
+    const rps = (p1, p2) => {
+        if (p1 === p2 )  return "Draw!"
+        if (p1 === 'rock' && p2 ==='scissors')  {
+            return "Player 1 won!"
+        }
+        if (p1 === 'scissors' && p2 ==='paper') {
+            return "Player 1 won!"
+        }
+        if (p1 === 'paper' && p2 ==='rock') {
+            return "Player 1 won!"
+        }
+        else {
+            return  "Player 2 won!"
+        }
+    }
+    console.log(rps('scissors', 'paper'))
+    function greet(name){
+        return `Hello, ${name} how are you doing today?`
+    }
+    console.log(greet("Ryan"))
+    //, "Hello, Ryan how are you doing today?"
+    function noSpace(x){
+        return x.split(' ').join('')
+    }
+    console.log(noSpace('8 j 8   mBliB8g  imjB8B8  jl  B'))
+    //, '8j8mBliB8gimjB8B8jlB'
+    function removeChar(str){
+        return str.split('').splice(1,str.length-2).join('')
+    }
+    console.log(removeChar('eloquent'))
+    //, 'loquen'
+    function getAge(inputString){
+        return +inputString.substring(0,1)
+    }
+    console.log(getAge("4 years old"))
+        //, 4
+    function getDrinkByProfession(param){
+        switch (param.toLowerCase()) {
+            case "jabroni" :
+                return 'Patron Tequila'
+            case "school Counselor" :
+                return "Anything with Alcohol"
+            case "programmer" :
+                return "Hipster Craft Beer"
+            case "bike Gang Member" :
+                return "Moonshine"
+            case "politician" :
+                return "Your tax dollars"
+            case "rapper" :
+                return "cristal"
+            default :
+               return  "Beer"
+        }
+    }
+    console.log(getDrinkByProfession("jabrOni"))
+        //, "Patron Tequila", "'Jabroni' should map to 'Patron Tequila'"
+    let summation = function (num) {
+        let arr = []
+        for (let i = 0; i <= num; i++) {
+            arr.push(i)
+        }
+
+        return arr.reduce((a, b) => a + b,0)
+    }
+    console.log(summation(8))
+    //, 36
+    function getPlanetName(id){
+        let name;
+        switch(id){
+            case 1:
+                return name = 'Mercury'
+            case 2:
+                return name = 'Venus'
+            case 3:
+                return name = 'Earth'
+            case 4:
+                return name = 'Mars'
+            case 5:
+                return name = 'Jupiter'
+            case 6:
+                return name = 'Saturn'
+            case 7:
+                return name = 'Uranus'
+            case 8:
+                return name = 'Neptune'
+        }
+    }
+    console.log(getPlanetName(8))
+    function findMultiples(integer, limit) {
+        let arr= []
+        for (let i = integer; i <= limit; i += integer) {
+            arr.push(i)
+        }
+        return arr
+    }
+    console.log(findMultiples(4, 27))
+    //, [4, 8, 12, 16, 20, 24]
+    function drawStairs(n) {
+        let cnt = 0;
+        let result = '';
+        while(n > cnt){
+            result += ' '.repeat(cnt) + 'I';
+            cnt++;
+            if(n > cnt) result += '\n';
+        }
+        return result;
+    }
+    console.log(drawStairs(3))
+    function DNAtoRNA(dna) {
+        let str = ''
+        //return dna.replaceAll('T', 'U')
+        for (let i = 0; i < dna.length; i++) {
+            if (dna[i] === 'T') {
+                str += 'U'
+            }
+            else str += dna[i]
+        }
+        return str
+    }
+    console.log(DNAtoRNA("TTTT"))
+    //, "UUUU
+    function findDifference(a, b) {
+        let result = a.reduce((a,b)=>  a * b) - b.reduce((a,b)=>  a * b)
+        return  result >= 0 ? result : 0
+    }
+    console.log(findDifference([4, 4, 7], [3, 9, 3]))
+    //, 14
+    function countPositivesSumNegatives(input) {
+        if (input.length === 0 ) return []
+        else {
+            let a =  input.filter(el => el <0).reduce((a,b) => a + b,0)
+            let b = input.filter(el => el > 0).length
+            return [b,a]
+        }
+    }
+    console.log(countPositivesSumNegatives([]))
+    //[10, -65]
+    function correct(string) {
+        return string.split('').map(el =>
+            el === '5' ? 'S' : el &&
+            el === '0' ? 'O' : el &&
+            el === '1' ? 'I' : el
+        ).join('')
+    }
+    console.log(correct("L0ND0N"))
+    //,"LONDON"
+    /*S is misinterpreted as 5
+    O is misinterpreted as 0
+    I is misinterpreted as 1*/
+    function howManydays(month){
+        let days;
+        switch (month){
+            case 1:
+                days = 31
+                break;
+            case 2:
+                days = 28
+                break;
+            case 3:
+                days = 31
+                break;
+            case 4:
+                days = 30
+                break;
+            case 5:
+                days = 31
+                break;
+            case 6:
+                days = 30
+                break;
+            case 7:
+                days = 31
+                break;
+            case 8:
+                days = 31
+                break;
+            case 9:
+                days = 30
+                break;
+            case 10:
+                days = 31
+                break;
+            case 11:
+                days = 30
+                break;
+            case 12:
+                days = 31
+                break;
+        }
+        return days;
+    }
+    console.log(howManydays(1))
+    function closeCompare(a, b, margin){
+        if (a < b) return -1
+        if (b < a) return 1
+        if (a === b || margin === 0 ) return 0
+    }
+    console.log(closeCompare(-6, -5))
+    function paperwork(n, m) {
+        return n < 0 || m < 0 ? 0 : m* n
+    }
+    console.log(paperwork(5,-5))
+    function findOutlier(integers){
+       let a = integers.filter(el => el % 2 === 0)
+        let b = integers.filter(el => el % 2 !== 0)
+        if (a.length === 1 ) return a.join()
+        if (b.length === 1 ) return b.join()
+
+    }
+    console.log(findOutlier([2,6,8,10,3]))
+    //, 1
+   function f(arr) {
+        let obj = {}
+       for (let i = 0; i < arr.length; i++) {
+
+           if (obj[arr[i]] === undefined) {
+               obj[arr[i]] = 1
+           }
+              else  obj[arr[i]]++
+       }
+       return obj
+    }
+    console.log(f([1,2,0]))
+    function calc(expr) {
+        if (!expr) return 0
+       let a = expr.split(' ')
+
+        if (a.length === 1) return a[0]
+        for ( let i = 0; i < a.length; i++ ) {
+            if( a[i] === '+') return +a[0] + +a[1]
+            if( a[i] === '-') return +a[0] - +a[1]
+            if( a[i] === '/') return +a[0] / +a[1]
+            if( a[i] === '*') return +a[0] * +a[1]
+        }
+    }
+    console.log(calc(""))
+    function createPhoneNumber(numbers){
+        numbers.splice(0, 0, '(')
+        numbers.splice(4, 0, ')')
+        numbers.splice(5, 0, ' ')
+        numbers.splice(9, 0, '-')
+        return numbers.join('')
+    }
+    console.log(createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]))
+    //, "(123) 456-7890"
+    function top3(products, amounts, prices) {
+        let obj = {}
+        let s = amounts.map((el,index) => prices[index] * el)
+
+        for (let i = 0; i < products.length; i++) {
+            obj[products[i]] = s[i]
+        }
+        //[597, 897, 1197, 4776, 7176, 9576, 1592, 2392, 3192]
+        return Object.keys(obj).sort((a,b) => obj[b] - obj[a])
+    }
+    console.log(top3(["Computer", "Cell Phones", "Vacuum Cleaner"], [3, 24, 8], [199, 299, 399]))
+    //597,7176,3192
+    //, ["Cell Phones", "Vacuum Cleaner", "Computer"]
+    function sortByLength (array) {
+        return array.sort((a,b) => a.length - b.length)
+    }
+    console.log(sortByLength(["Beg", "Life", "I", "To"]))
+    //,["I", "To", "Beg", "Life"]
+    function loopArr(arr, direction, steps) {
+        if(direction === 'left')  return arr.splice(steps).concat(arr)
+        if (direction === 'right') return arr.splice(-steps).concat(arr)
+    }
+    console.log(loopArr([1, 5, 87, 45, 8, 8], 'right', 2))
+    //, [87, 45, 8, 8, 1, 5])
+    //[8, 8, 1, 5, 87, 45]
+
+    let number=function(array){
+        return array.map((el, index) => `${index + 1} : ${el}`)
+    }
+    console.log(number(["a", "b", "c"]))
+    //, ["1: a", "2: b", "3: c"])
+    function smallEnough(a, limit){
+
+        return Math.max(...a) <= limit
+    }
+    console.log(smallEnough([78, 117, 110, 99, 104, 117, 107, 115], 120))
+    //, true
+    function spacify (str) {
+        return str.split('').map(el => el + ' ').join('')
+    }
+    console.log(spacify('12345'))
+    //,'h e l l o   w o r l d')
+    function getNewNotes(salary,bills){
+        let a = bills.reduce((a, b) => a + b)
+        return (salary - a) > 0 ?  Math.floor((salary - a)/5) : 0
+    }
+    console.log(getNewNotes(5300, [1190, 1010, 1045, 55, 10, 19, 55]))
+    //,188
+    function fizzbuzz(n) {
+        let arr = []
+        for (let i = 1; i <= n; i++) {
+            arr.push(i)
+        }
+        return arr.map(el =>
+            el % 3 === 0 && el % 5 === 0 ? "FizzBuzz" : el &&
+            el % 3 === 0 ? 'Fizz' : el &&
+            el % 5 === 0 ? 'Buzz' : el
+         )
+    }
+    console.log(fizzbuzz(15))
+    //[1,2,'Fizz',4,'Buzz','Fizz',7,8,'Fizz','Buzz']
+    function remove(str){
+        return str.slice(1,-1)
+    }
+    console.log(remove('eloquent'))
+    //, 'loquen'
+
+
+    function getMiddl(s) {
+        return s.length % 2 === 0 ?  s.slice(s.length/2-1, s.length/2+1) : s.slice(s.length/2,s.length/2+1)
+    }
+    console.log(getMiddl("testing"))
+    //,"es"
+    //"testing"),"t"
+    let FilterString = function(value) {
+        let a = [0,1,2,3,4,5,6,7,8,9]
+        return +value.split('').filter(el => a.includes(+el) ).join('')
+    }
+    console.log(FilterString("a1b2c3e0"))
+    //, 123
+    function isPrime(num) {
+        /*for (let i = 2; i < num; i++) {
+            if (num % i === 0)
+                return false
+            return num >1
+        }*/
+        for(let i = 2; i <= Math.sqrt(num); i++) {
+            if(num % i === 0) {
+                return false;
+            }
+        }
+        return num > 1
+    }
+    console.log(isPrime(75))
+    function findDup( arr ){
+        /*let a = {}
+        for (let i = 0; i < arr.length; i++) {
+            if(!a[arr[i]]) a[arr[i]] = 1
+            else a[arr[i]]++
+        }
+        return +Object.keys(a).filter(el => a[el] > 1 ).join('')*/
+        /*arr.sort()
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] === arr[i+1])  return arr[i]
+        }*/
+        return arr.filter((el, index) => arr.indexOf(el) !== index)[0]
+    }
+    console.log(findDup([1,3,2,5,4,5,7,6]))
+    //, 2
+    let arr = [1,2,3,4,4,4,4]
+    const noDubl = arr.reduce((arr2,el) => arr2.includes(el) ? arr2 : [...arr2,el],[])
+    console.log(noDubl)
+    function cake(x, y){
+        let s = 0
+        let k = 0
+        for (let i = 0; i < y.length; i++) {
+            if (i % 2 !== 0) k += 2
+            if (i % 2 === 0)
+            s += y.charCodeAt(i)
+        }
+        return (s + k) * 100 / x > 70 ? 'Fire!' : 'That was close!'
+    }
+
+    console.log(cake(915, "h"))
+    //102 +2 +122+2+105+2+122+2+104 + 2
+    //, 'That was close!')fvzriyzshf
+    let isAnagram = function(test, original) {
+        let a = test.toLowerCase().split('').sort()
+        let b = original.toLowerCase().split('').sort()
+        return b === a
+        /*let s = 0
+        let test1 = test.toLowerCase()
+        let original2 = original.toLowerCase()
+        for (let i = 0; i < test1.length; i++) {
+            s += test1.charCodeAt(i)
+        }
+        let x = 0
+        for (let k = 0; k < original2.length; k++) {
+            x += original2.charCodeAt(k)
+        }
+        return x === s*/
+    }
+    console.log(isAnagram("dumble", "bumble"))
+    function findShort2(s){
+        return s.split(' ').sort((a, b) => a.length - b.length)[0].length
+    }
+    console.log(findShort2("Let's travel abroad shall we"))
+    //, 2
+    function head (arr) {
+        return  arr[0]
+    }
+    console.log(head([7,1]))
+    function tail (arr) {
+        let arr1 = [...arr]
+        return arr1.length > 1 ? arr1.splice(1) : []
+    }
+    console.log(tail([7,1,2]))
+    function init (arr) {
+        let arr1 = [...arr]
+        return arr1.splice(0,arr1.length-1)
+    }
+    console.log(init([43,36,3,41,19,48]))
+    function last1 (arr) {
+        let arr1 = [...arr]
+        return arr1[arr1.length-1]
+    }
+    console.log(last1([43,36,3,41,19,48]))
+    const whosOnline = (friends) => {
+        return friends.filter(el => (el.lastActivity > 10 ))
+    }
+    console.log(whosOnline([{
+        username: 'David',
+        status: 'online',
+        lastActivity: 10
+    }, {
+        username: 'Lucy',
+        status: 'offline',
+        lastActivity: 22
+    }, {
+        username: 'Bob',
+        status: 'online',
+        lastActivity: 104
+    }]))
+    /*{online: ['David'],
+        offline: ['Lucy'],
+        away: ['Bob']} not solve*/
+    function count1 (string) {
+        let obj = {}
+        for(let i = 0; i < string.length; i++) {
+            if (!obj[string[i]]) obj[string[i]] = 1
+            else obj[string[i]]++
+        }
+        return obj
+    }
+    console.log(count1("aba"))
+    //, { a: 2, b: 1 }
+    function numObj(s){
+        return s.map(el => ({ [el] : String.fromCharCode(el)}))
+    }
+    console.log(numObj([118,117,120]))
+    //,[{'118':'v'}, {'117':'u'}, {'120':'x'}]
+    function maxPossibleScore(obj, arr) {
+        let s = 0
+        let k = 0
+        let v = arr.includes(...Object.keys(obj))
+        console.log(v)
+        for (let el in obj) {
+            if (arr.includes(...Object.keys(obj)))
+           s += obj[el] * 2
+            else k += obj[el]
+        }
+        return s + k
+    }
+    console.log(maxPossibleScore({"a": 1, "b": 2, "c": 4}, ["a", "c"]))
+    //, 14 not solve
+    function killer(suspectInfo, dead) {
+    }
+    console.log(killer({'James': ['Jacob', 'Bill', 'Lucas'],
+        'Johnny': ['David', 'Kyle', 'Lucas'],
+        'Peter': ['Lucy', 'Kyle']}, ['Lucas', 'Bill']))
+    //'James' not solve
+    let runLengthEncoding = function(str){
+        let obj = {}
+        for (let i = 0; i < str.length; i++) {
+            if(!obj[str[i]]) obj[str[i]] = 1
+            else obj[str[i]]++
+        }
+        let a = Object.entries(obj)
+        for (let el of a) {
+            el.reverse()
+        }
+        return a
+    }
+    console.log(runLengthEncoding("hello world!"))
+    //, [[1,'a'],[1,'b'],[1,'c']])
+    function validWord(a, s) {
+        for (let x of a) if (s.startsWith(x) && validWord(a, s.slice(x.length))) return true;
+        return !s;
+    }
+    console.log(validWord(['code', 'wars'], 'codewars'))
+    //,true]
+    let ArrowFunc = function(arr) {
+        return arr.map(el => String.fromCharCode(el)).join('')
+    }
+    console.log(ArrowFunc([84,101,115,116]))
+
+    function mergeArrays(arr1, arr2) {
+        return  [...new Set([...arr1,...arr2].sort((a, b) => a - b))]
+    }
+    console.log(mergeArrays([1,3,5,7,9,11,12], [1,2,3,4,5,10,12]))
+    //, [1,2,3,4,5,6,7,8]
+    function add(num1, num2) {
+        let arr1 = num1.toString().split('')
+        let arr2 = num2.toString().split('')
+        if (arr1.length < arr2.length) arr1.unshift(0)
+        else if (arr2.length < arr1.length) arr2.unshift(0)
+        return +arr1.map((el,index) => +arr2[index] + +el).join('')
+    }
+    console.log(add(1222, 30277))
+        //, , 391193
+    /*for(let key of array){
+        let obj = {}
+        obj=key[array]
+        for(let value in obj ){
+            obj[value] = value
+            return array
+        }
+    }*/
+    /*function combine(object1,object2) {
+        let object = {};
+        for(let i = 0, arrays = [object1, object2]; i < arrays.length; i++){
+            for(let key in arrays[i]){
+                if(object[key] == undefined){
+                    object[key] = arrays[i][key];
+                }else{
+                    object[key] = parseFloat(object[key]) + parseFloat(arrays[i][key]);
+                };
+            };
+        };
+
+        return object;
+    }*/
+    function addProperty (questions) {
+        return questions.map(el => ({...el,usersAnswer:null}))
+    }
+    console.log(addProperty([{
+        question: "What's the currency of the USA?",
+        choices: ["US dollar", "Ruble", "Horses", "Gold"],
+        corAnswer: 0
+    }, {
+        question: "Where was the American Declaration of Independence signed?",
+        choices: ["Philadelphia", "At the bottom", "Frankie's Pub", "China"],
+        corAnswer: 0
+    }]))
+    /*var questions = [{
+        question: "What's the currency of the USA?",
+        choices: ["US dollar", "Ruble", "Horses", "Gold"],
+        corAnswer: 0,
+        usersAnswer: null
+    }, {
+        question: "Where was the American Declaration of Independence signed?",
+        choices: ["Philadelphia", "At the bottom", "Frankie's pub", "China"],
+        corAnswer: 0,
+        usersAnswer: null
+    }];*/
+    function colourAssociation(array){
+        return array.map(([color, association]) => ({[color]:association}))
+    }
+    console.log(colourAssociation([["white", "goodness"], ["blue", "tranquility"]]))
+    //, [{white:"goodness"},{blue:"tranquility"}]
+    function combine(...obj) {
+
+        /*let obj = {}
+        for (let el in object1) {
+            for (let item in object2) {
+                if (el === item)  obj[el] = object1[el] + object2[item]
+            }
+        }
+        console.log(object1)
+        console.log(object2)*/
+        //let a = Object.entries(object1)
+        //let b = Object.entries(object2)
+        let c = [].concat(...obj)
+        let objNew = {}
+        c.forEach(obj => {
+            for (let key in obj) {
+                if (objNew[key]) objNew[key] = obj[key] + objNew[key]
+                else objNew[key] = obj[key]
+                    }
+        })
+            return objNew
+    }
+    console.log(combine({ a: 1, b: 20, c: 10 }, { a: 3, c: 6, d: 3 }))
+    //{ a: 13, b: 20, c: 36, d: 3 }
+    function findMissing(arr1, arr2) {
+        let a = arr1.sort()
+        let b = arr2.sort()
+        for (let i = 0; i < a.length; i++) {
+                if (a[i] !== b[i]) return a[i]
+        }
+    }
+    console.log(findMissing([1, 2, 3], [1, 3]))
+    //2 [4, 3, 3, 61, 8, 8], [8, 61, 8, 3, 4]
+    function getDecimal(n){
+        let a = Math.abs(n)
+        return a - Math.floor(a)
+    }
+    console.log(getDecimal(-2.4))
+    //0.4
+    function maxTriSum(numbers){
+        return [...new Set(numbers)].sort((a, b) => b - a).splice(0,3).reduce((a, b) => a + b,0)
+    }
+    console.log(maxTriSum([2,1,8,0,6,4,8,6,2,4]))
+    //,17
+    function nicknameGenerator(name){
+        let arr = ['e', 'a', 'i' ,'u' ,'o']
+        if (name.length < 4) return "Error: Name too short"
+        if (arr.some(el => el === name[2])) return  name.substring(0,4)
+        else return name.substring(0,3)
+    }
+    console.log(nicknameGenerator("Saam"))
+    //, "Sam"
+</script>
+</body>
+</html>

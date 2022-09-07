@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Counter} from "./Component/Counter/Counter";
 import {ButtonDop} from "./Component/ButtonDop";
+import {WithValue} from "./Component/Select/WithValue";
 type GetType = {
     'userId':string
     'id':number
@@ -40,7 +41,7 @@ function App() {
         }
     }
     const [get, setGet] =useState<Array<GetType>>([])
-    console.log(get)
+
     const getRequestHandler = () => {
         setGet([])
 
@@ -50,11 +51,23 @@ function App() {
             .then(response => response.json())
             .then(json => setGet(json))
     },[])
+
+    const [list, setList] = useState([
+        {value:'1', name:'Natallia'},
+        {value:'2', name:'Jan'},
+        {value:'3', name:'Sasha'},
+        {value:'4', name:'Sonia'},
+    ])
+    const changeListChoice = (value:string) => {
+        setList(list)
+    }
+
     return (
 
         <div>
+            <WithValue changeListChoice={changeListChoice} list={list} value={'2'}/>
+
             <ButtonDop nickName={'cleanPage'} callBack={getRequestHandler}/>
-            <p></p>
             <ul>
             {get.map((el:GetType)=> {
                 return (
